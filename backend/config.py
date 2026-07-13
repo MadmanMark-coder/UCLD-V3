@@ -19,7 +19,7 @@ class Settings:
     if not UCLD_DB_PATH.is_absolute():
         UCLD_DB_PATH = (BASE_DIR / UCLD_DB_PATH).resolve()
 
-    GROQ_API_KEY: str = os.getenv("GROQ_API_KEY", "")
+    AI_API_KEY: str = os.getenv("AI_API_KEY", "")
 
     GROQ_MODELS: dict = {
         "clinical": "llama-3.1-8b-instant",

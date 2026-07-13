@@ -7,8 +7,8 @@ services:
     envVars:
       - key: PYTHONPATH
         value: .
-      - key: GROQ_API_KEY
-        fromEnv: GROQ_API_KEY
+      - key: AI_API_KEY
+        fromEnv: AI_API_KEY
 
   - type: static
     name: ucld-frontend

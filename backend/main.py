@@ -44,14 +44,14 @@ async def lifespan(app: FastAPI):
     state.engine = ReplayEngine(state.ws_manager, speed=settings.REPLAY_DEFAULT_SPEED)
 
     # Initialise AI services
-    if settings.GROQ_API_KEY and settings.GROQ_API_KEY != "your_groq_api_key_here":
+    if settings.AI_API_KEY and settings.AI_API_KEY != "your_groq_api_key_here":
         from backend.services.groq_client import GroqClient
         from backend.services.clinical_engine import ClinicalEngine
         from backend.services.operations_copilot import OperationsCopilot
         from backend.services.voice_assistant import VoiceAssistant
         from backend.services.emergency_coordinator import EmergencyCoordinator
 
-        state.groq_client = GroqClient(settings.GROQ_API_KEY)
+        state.groq_client = GroqClient(settings.AI_API_KEY)
         state.clinical_engine = ClinicalEngine(state.groq_client, state.engine)
         state.operations_copilot = OperationsCopilot(state.groq_client, state.engine)
         state.voice_assistant = VoiceAssistant(state.groq_client, state.engine)
@@ -60,7 +60,7 @@ async def lifespan(app: FastAPI):
         state.engine._clinical_engine = state.clinical_engine
         logger.info("AI services initialised")
     else:
-        logger.warning("AI API key not configured — AI services disabled. Set GROQ_API_KEY in .env")
+        logger.warning("AI API key not configured — AI services disabled. Set AI_API_KEY in .env")
 
     try:
         stay_ids = get_cohort_preset("all")
