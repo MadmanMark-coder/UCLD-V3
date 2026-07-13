@@ -1,8 +1,14 @@
 import logging
+import sys
+from pathlib import Path
 from contextlib import asynccontextmanager
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from fastapi import FastAPI, WebSocket
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 import uvicorn
 
 from backend.config import settings
@@ -131,6 +137,21 @@ app.include_router(mimic_data.router)
 app.include_router(staff.router)
 app.include_router(notes.router)
 app.include_router(admin.router)
+
+# Serve frontend build in production
+frontend_dist = Path(__file__).resolve().parent.parent / "frontend" / "dist"
+if frontend_dist.exists():
+    app.mount("/assets", StaticFiles(directory=str(frontend_dist / "assets")), name="assets")
+
+    @app.get("/{full_path:path}")
+    async def serve_frontend(full_path: str):
+        if full_path.startswith("api/") or full_path.startswith("ws"):
+            from fastapi.responses import JSONResponse
+            return JSONResponse({"detail": "Not Found"}, status_code=404)
+        index = frontend_dist / "index.html"
+        if index.exists():
+            return FileResponse(str(index))
+        return JSONResponse({"detail": "Not Found"}, status_code=404)
 
 
 if __name__ == "__main__":

@@ -51,11 +51,10 @@ class OperationsCopilot:
         dept_lines = "\n".join(f"  - {d}: {c}" for d, c in sorted(ctx["dept_counts"].items(), key=lambda x: -x[1]))
         alert_str = ", ".join(ctx["recent_alerts"]) if ctx["recent_alerts"] else "None"
         system_prompt = (
-            "You are a brilliant, friendly AI assistant built specifically for doctors and clinical staff in an ICU. "
-            "Think of yourself as a mix between a knowledgeable senior physician and ChatGPT — warm, conversational, "
-            "and incredibly helpful. You can chat casually, answer medical questions, explain clinical concepts, "
-            "give advice, and also pull from real-time hospital data when relevant.\n\n"
-            "=== LIVE HOSPITAL DATA (use only when clinically relevant) ===\n"
+            "You are an ICU operations assistant. Your ONLY job is to answer questions about "
+            "ICU operations: patient census, bed status, equipment availability, alert status, "
+            "and other hospital operations data. Keep responses brief and data-driven.\n\n"
+            "=== LIVE HOSPITAL DATA (use when relevant) ===\n"
             f"Active patients: {ctx['patient_count']} "
             f"(Critical: {ctx['cat_counts']['critical']}, High Risk: {ctx['cat_counts']['high_risk']}, "
             f"Elevated: {ctx['cat_counts']['elevated']}, Observation: {ctx['cat_counts']['observation']}, Stable: {ctx['cat_counts']['stable']})\n"
@@ -64,18 +63,16 @@ class OperationsCopilot:
             f"{ctx['bed_stats'].get('occupied', 0)} occupied\n"
             f"Equipment: {ctx['eq_available']} available, {ctx['eq_in_use']} in use\n"
             f"Recent alerts: {alert_str}\n\n"
-            "=== HOW TO BEHAVE ===\n"
-            "1. CASUAL CHAT: If someone says hi, how are you, good morning, or anything non-clinical — "
-            "respond warmly and naturally like ChatGPT would. DO NOT dump hospital data for casual greetings.\n"
-            "2. CLINICAL QUESTIONS: When asked about patients, diagnoses, medications, procedures, vitals, "
-            "protocols, or anything medical — answer like a senior physician. Be thorough but concise.\n"
-            "3. HOSPITAL DATA: Only reference the live data above when the user is specifically asking about "
-            "the current hospital status, patients, beds, or equipment.\n"
-            "4. PERSONALITY: Be warm, professional, and approachable. Use 'I' naturally. Occasionally use "
-            "light humour where appropriate. Never be robotic or overly formal.\n"
-            "5. FORMAT: Use bullet points or bold text when it helps clarity. Keep responses concise — "
-            "doctors are busy. For complex topics, offer to go deeper.\n"
-            "6. HONESTY: If you don't know something or don't have the data, say so directly."
+            "=== RULES ===\n"
+            "1. ONLY answer ICU operations questions. Do NOT engage in casual chat, jokes, philosophy, "
+            "or off-topic conversation.\n"
+            "2. If asked something non-clinical or gibberish, respond: 'I'm an ICU operations assistant. "
+            "Ask me about patient census, bed status, equipment availability, or clinical data.'\n"
+            "3. For clinical questions (patients, diagnoses, meds, vitals, protocols), answer concisely "
+            "like a senior physician.\n"
+            "4. Reference the live data above only when the question is about current hospital status.\n"
+            "5. Be polite but direct. Keep responses short — doctors are busy.\n"
+            "6. If you don't know or don't have the data, say so directly."
         )
         full_messages = [{"role": "system", "content": system_prompt}]
         full_messages.extend(messages[-10:])
@@ -267,17 +264,12 @@ class OperationsCopilot:
             ]
             if any(w in q for w in ("sport", "game", "basketball", "football", "soccer", "baseball", "hockey", "tennis")):
                 return random.choice(sports)
-            casual = [
-                "That's an interesting question! Honestly, I'm happy to chat about anything — medicine, life, or whatever's on your mind. What else would you like to talk about?",
-                "I appreciate the conversation! I can help with ICU data, medical questions, or just keep you company. What's up?",
-                "Good question! I'm a versatile assistant — hospital data, clinical knowledge, or casual chat. How can I help?",
-                "I love getting questions like that! While my specialty is the ICU, I'm always happy to have a good conversation. What else can I do for you?",
-                "Hmm, I don't have specific data on that, but I'm always happy to chat! What would you like to discuss?",
-                "Great question! I might not have the answer on hand, but I'm always ready to help. Fire away!",
-                "I enjoy a good conversation! Whether it's about patients, medicine, or general chat — I'm here for you. What's next?",
-                "That's a good one! I may not have all the answers, but I'll do my best to help. What else is on your mind?",
+            unrecognized = [
+                "I'm an ICU operations assistant. Ask me about patient census, bed status, equipment availability, or clinical data.",
+                "I only answer ICU operations questions. Try: patient census, bed occupancy, equipment status, or patient alerts.",
+                "Not sure what you mean. I can help with ICU operations — patient stats, bed availability, equipment tracking, active alerts.",
             ]
-            return random.choice(casual)
+            return random.choice(unrecognized)
         return "\n\n".join(lines)
 
     async def answer_query(self, query: str, context: dict | None = None) -> str:
@@ -286,7 +278,7 @@ class OperationsCopilot:
         try:
             result = await self.groq_client.chat_completion(
                 "operations",
-                [{"role": "system", "content": "You are a friendly, casual AI assistant for a hospital ICU team. Be warm and conversational like ChatGPT. If someone says hi/hello/how are you, greet them back naturally. If they ask a clinical question, answer concisely using the hospital context provided. Keep responses to 1-3 sentences."},
+                [{"role": "system", "content": "You are an ICU operations assistant. Answer questions about patient census, bed status, equipment, and clinical data only. If asked anything off-topic or gibberish, say you only handle ICU operations questions."},
                  {"role": "user", "content": f"Hospital context:\n{context_str}\n\nMessage: {query}"}]
             )
             if result and result.get("content"):

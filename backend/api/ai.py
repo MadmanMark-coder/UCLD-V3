@@ -56,6 +56,9 @@ async def chat(body: ChatRequest):
     return {"response": response}
 
 
+
+
+
 @router.post("/voice")
 async def voice_command(body: VoiceRequest):
     if not state.voice_assistant:
@@ -79,3 +82,15 @@ async def detect_deterioration(patient_id: str, hours: int = 6):
     history = state.engine.get_patient_vitals_history(int(patient_id), hours=hours) if state.engine else []
     result = await state.clinical_engine.detect_deterioration(patient_id, history)
     return result
+
+
+@router.post("/status")
+async def ai_status():
+    if not state.groq_client:
+        return {"client": None}
+    gc = state.groq_client
+    return {
+        "key_present": bool(gc.api_key),
+        "key_prefix": gc.api_key[:10] if gc.api_key else "none",
+        "rate_limited_until": gc._rate_limited_until,
+    }
