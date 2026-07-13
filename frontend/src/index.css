@@ -1,0 +1,179 @@
+@import "tailwindcss";
+
+:root {
+  /* Professional Clinical Dark Palette */
+  --bg-deepest: #09090b; /* Very dark slate */
+  --bg-primary: #18181b; /* Slightly lighter slate for contrast */
+  --bg-surface: #27272a; /* Card backgrounds */
+  --bg-elevated: #3f3f46;
+  --bg-hover: rgba(255, 255, 255, 0.05);
+
+  --border-default: #3f3f46;
+  --border-light: #52525b;
+  --border-hover: #71717a;
+  --border-active: #0ea5e9;
+
+  --text-primary: #f4f4f5;
+  --text-secondary: #a1a1aa;
+  --text-muted: #71717a;
+  --text-accent: #38bdf8;
+
+  /* Removed glows, replaced with subtle shadows */
+  --glow-cyan: 0 4px 12px rgba(0, 0, 0, 0.2);
+  --glow-red: 0 4px 12px rgba(0, 0, 0, 0.2);
+  --glow-purple: 0 4px 12px rgba(0, 0, 0, 0.2);
+  --glow-amber: 0 4px 12px rgba(0, 0, 0, 0.2);
+  --glow-green: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+  /* Clinical Status Colors - Slightly desaturated for professional look */
+  --status-stable: #22c55e;
+  --status-observation: #3b82f6;
+  --status-elevated: #eab308;
+  --status-high-risk: #f97316;
+  --status-critical: #ef4444;
+  --status-emergency: #ef4444;
+
+  --alert-info: #3b82f6;
+  --alert-warning: #f97316;
+  --alert-critical: #ef4444;
+  --alert-emergency: #ef4444;
+
+  --ai-message: #a855f7;
+  --ai-badge: rgba(168, 85, 247, 0.1);
+  --ai-glow: rgba(168, 85, 247, 0.05);
+
+  --chart-line: #38bdf8;
+  --chart-grid: rgba(255, 255, 255, 0.05);
+  --chart-threshold: rgba(239, 68, 68, 0.5);
+
+  /* Sharpened geometry */
+  --panel-radius: 6px;
+  --card-radius: 8px;
+  --pill-radius: 999px;
+}
+
+body {
+  margin: 0;
+  background: var(--bg-deepest);
+  color: var(--text-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6, .outfit {
+  font-family: 'Inter', sans-serif; /* Moving away from playful font to Inter for all headers, keeping class for compatibility */
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+code, .mono {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* Professional Surface Utilities */
+.glass-panel {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--card-radius);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2), 0 1px 2px rgba(0,0,0,0.1);
+  transition: border-color 0.15s ease;
+}
+
+.glass-panel:hover {
+  border-color: var(--border-light);
+}
+
+.glass-header {
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border-default);
+}
+
+/* Modern Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Animations - Subtle */
+@keyframes pulse-critical {
+  0% { opacity: 1; }
+  50% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(20px); opacity: 0; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInDown {
+  from { transform: translateY(-10px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.2s ease forwards;
+}
+
+.critical-pulse {
+  animation: pulse-critical 2s infinite;
+}
+
+/* Utility buttons */
+.btn-primary {
+  background: #0284c7; /* Solid blue */
+  border: 1px solid #0369a1;
+  color: #ffffff;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.btn-primary:hover {
+  background: #0369a1;
+}
+
+.btn-outline {
+  background: var(--bg-deepest);
+  border: 1px solid var(--border-default);
+  color: var(--text-primary);
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.btn-outline:hover {
+  background: var(--bg-elevated);
+}
+
+.btn-critical {
+  background: #dc2626; /* Solid red */
+  border: 1px solid #b91c1c;
+  color: #ffffff;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.btn-critical:hover {
+  background: #b91c1c;
+}

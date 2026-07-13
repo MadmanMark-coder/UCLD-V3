@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1300 360" fill="none">
+  <rect width="1300" height="360" fill="var(--bg-deepest, #0a0a14)"/>
+
+  <!-- Department labels -->
+  <text x="70" y="30" fill="var(--text-muted, #666)" font-size="10" font-weight="600" font-family="monospace" opacity="0.6">MICU</text>
+  <text x="370" y="30" fill="var(--text-muted, #666)" font-size="10" font-weight="600" font-family="monospace" opacity="0.6">SICU</text>
+  <text x="670" y="30" fill="var(--text-muted, #666)" font-size="10" font-weight="600" font-family="monospace" opacity="0.6">CCU</text>
+  <text x="970" y="30" fill="var(--text-muted, #666)" font-size="10" font-weight="600" font-family="monospace" opacity="0.6">STEPDOWN</text>
+  <text x="1170" y="30" fill="var(--text-muted, #666)" font-size="10" font-weight="600" font-family="monospace" opacity="0.6">ED</text>
+
+  <!-- Row 1: Rooms 301-306 -->
+  <rect x="30" y="40" width="140" height="80" rx="4" stroke="var(--border-default, #333)" stroke-width="1" fill="var(--bg-surface, #14141f)"/>
+  <text x="100" y="82" fill="var(--text-muted, #999)" font-size="11" font-family="monospace" text-anchor="middle">301</text>
+
+  <rect x="190" y="40" width="140" height="80" rx="4" stroke="var(--border-default, #333)" stroke-width="1" fill="var(--bg-surface, #14141f)"/>
+  <text x="260" y="82" fill="var(--text-muted, #999)" font-size="11" font-family="monospace" text-anchor="middle">302</text>
+
+  <rect x="350" y="40" width="140" height="80" rx="4" stroke="var(--border-default, #333)" stroke-width="1" fill="var(--bg-surface, #14141f)"/>
+  <text x="420" y="82" fill="var(--text-muted, #999)" font-size="11" font-family="monospace" text-anchor="middle">303</text>
+
+  <rect x="510" y="40" width="140" height="80" rx="4" stroke="var(--border-default, #333)" stroke-width="1" fill="var(--bg-surface, #14141f)"/>
+  <text x="580" y="82" fill="var(--text-muted, #999)" font-size="11" font-family="monospace" text-anchor="middle">304</text>
+
+  <rect x="670" y="40" width="140" height="80" rx="4" stroke="var(--border-default, #333)" stroke-width="1" fill="var(--bg-surface, #14141f)"/>
+  <text x="740" y="82" fill="var(--text-muted, #999)" font-size="11" font-family="monospace" text-anchor="middle">305</text>
+
+  <rect x="830" y="40" width="140" height="80" rx="4" stroke="var(--border-default, #333)" stroke-width="1" fill="var(--bg-surface, #14141f)"/>
+  <text x="900" y="82" fill="var(--text-muted, #999)" font-size="11" font-family="monospace" text-anchor="middle">306</text>
+
+  <!-- Row 2: Rooms 307-312 -->
+  <rect x="30" y="135" width="140" height="80" rx="4" stroke="var(--border-default, #333)" stroke-width="1" fill="var(--bg-surface, #14141f)"/>
+  <text x="100" y="177" fill="var(--text-muted, #999)" font-size="11" font-family="monospace" text-anchor="middle">307</text>
+
+  <rect x="190" y="135" width="140" height="80" rx="4" stroke="var(--border-default, #333)" stroke-width="1" fill="var(--bg-surface, #14141f)"/>
+  <text x="260" y="177" fill="var(--text-muted, #999)" font-size="11" font-family="monospace" text-anchor="middle">308</text>
+
+  <rect x="350" y="135" width="140" height="80" rx="4" stroke="var(--border-default, #333)" stroke-width="1" fill="var(--bg-surface, #14141f)"/>
+  <text x="420" y="177" fill="var(--text-muted, #999)" font-size="11" font-family="monospace" text-anchor="middle">309</text>
+
+  <rect x="510" y="135" width="140" height="80" rx="4" stroke="var(--border-default, #333)" stroke-width="1" fill="var(--bg-surface, #14141f)"/>
+  <text x="580" y="177" fill="var(--text-muted, #999)" font-size="11" font-family="monospace" text-anchor="middle">310</text>
+
+  <rect x="670" y="135" width="140" height="80" rx="4" stroke="var(--border-default, #333)" stroke-width="1" fill="var(--bg-surface, #14141f)"/>
+  <text x="740" y="177" fill="var(--text-muted, #999)" font-size="11" font-family="monospace" text-anchor="middle">311</text>
+
+  <rect x="830" y="135" width="140" height="80" rx="4" stroke="var(--border-default, #333)" stroke-width="1" fill="var(--bg-surface, #14141f)"/>
+  <text x="900" y="177" fill="var(--text-muted, #999)" font-size="11" font-family="monospace" text-anchor="middle">312</text>
+
+  <!-- Corridors -->
+  <line x1="175" y1="40" x2="175" y2="215" stroke="var(--border-default, #444)" stroke-width="1" stroke-dasharray="4 2"/>
+  <line x1="335" y1="40" x2="335" y2="215" stroke="var(--border-default, #444)" stroke-width="1" stroke-dasharray="4 2"/>
+  <line x1="495" y1="40" x2="495" y2="215" stroke="var(--border-default, #444)" stroke-width="1" stroke-dasharray="4 2"/>
+  <line x1="655" y1="40" x2="655" y2="215" stroke="var(--border-default, #444)" stroke-width="1" stroke-dasharray="4 2"/>
+  <line x1="815" y1="40" x2="815" y2="215" stroke="var(--border-default, #444)" stroke-width="1" stroke-dasharray="4 2"/>
+
+  <!-- Nurse station -->
+  <rect x="30" y="235" width="300" height="90" rx="6" stroke="var(--border-active, #555)" stroke-width="1.5" fill="var(--bg-hover, #1a1a2e)" stroke-dasharray="2 2"/>
+  <text x="180" y="280" fill="var(--text-muted, #999)" font-size="12" font-weight="600" font-family="monospace" text-anchor="middle">NURSE STATION</text>
+  <text x="180" y="295" fill="var(--text-muted, #666)" font-size="9" font-family="monospace" text-anchor="middle">◻ ◻ ◻  (3 desks)</text>
+
+  <!-- Equipment storage -->
+  <rect x="350" y="235" width="200" height="90" rx="6" stroke="var(--border-default, #444)" stroke-width="1" fill="var(--bg-surface, #14141f)"/>
+  <text x="450" y="280" fill="var(--text-muted, #999)" font-size="11" font-weight="600" font-family="monospace" text-anchor="middle">EQUIPMENT</text>
+  <text x="450" y="296" fill="var(--text-muted, #666)" font-size="10" font-family="monospace" text-anchor="middle">📦 Ventilators · Defibrillators</text>
+
+  <!-- STEPDOWN zone -->
+  <rect x="830" y="235" width="300" height="90" rx="6" stroke="var(--border-default, #444)" stroke-width="1" fill="var(--bg-surface, #14141f)"/>
+  <text x="980" y="280" fill="var(--text-muted, #999)" font-size="11" font-weight="600" font-family="monospace" text-anchor="middle">STEPDOWN UNIT</text>
+  <text x="980" y="296" fill="var(--text-muted, #666)" font-size="10" font-family="monospace" text-anchor="middle">6 beds · Telemetry</text>
+
+  <!-- ED zone -->
+  <rect x="1150" y="40" width="120" height="175" rx="6" stroke="var(--border-default, #444)" stroke-width="1" fill="var(--bg-surface, #14141f)"/>
+  <text x="1210" y="130" fill="var(--text-muted, #999)" font-size="11" font-weight="600" font-family="monospace" text-anchor="middle">EMERGENCY</text>
+  <text x="1210" y="146" fill="var(--text-muted, #666)" font-size="10" font-family="monospace" text-anchor="middle">DEPARTMENT</text>
+
+  <!-- ED bed marker -->
+  <rect x="1165" y="160" width="90" height="40" rx="4" stroke="var(--border-default, #444)" stroke-width="0.5" fill="var(--bg-deepest, #0a0a14)"/>
+  <text x="1210" y="184" fill="var(--text-muted, #888)" font-size="10" font-family="monospace" text-anchor="middle">Bed 1</text>
+
+  <!-- Legend -->
+  <text x="1020" y="310" fill="var(--text-muted, #666)" font-size="8" font-family="monospace">● Patient  ● Equipment</text>
+</svg>
